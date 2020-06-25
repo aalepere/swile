@@ -3,6 +3,7 @@ import luigi
 from luigi.contrib import sqla
 from sqlalchemy import Date, String, Float
 from tools.date import dateparse, load_with_format_and_clean
+from tools.execute_query_to_gsheet import main
 
 
 class InsertEmployees(sqla.CopyToTable):
@@ -105,12 +106,17 @@ class InsertAccountsActivity(sqla.CopyToTable):
             yield row
 
 
-class CreateLoadDB(luigi.WrapperTask):
+class LoadDataGsheet(luigi.Task):
     """
-        Loads each of files in SQL3 database, into their equivalent table
+        Execute SQL statements
+        Sends the data to Gsheet
+        Data is then used for the dashboard
     """
 
     def requires(self):
         yield InsertEmployees()
         yield InsertOpportunities()
         yield InsertAccountsActivity()
+
+    def run(self):
+        main()
