@@ -65,6 +65,8 @@ It was decided to use SQLite as it is open source and easily portable through a 
 
 Thank to the GoogleSheet API, we can execuute SQL queries and push the results to a define sheet which will then be used for a dashboard.
 
+https://docs.google.com/spreadsheets/d/1cqG_FRGjnOqHYx0GKKuxG7flzpCxfkuiC12aNDqDeRU/edit#gid=920014818
+
 ## Execute
 
 The below command line runs the luigi pipeline:
