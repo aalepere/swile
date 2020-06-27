@@ -14,7 +14,7 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets"]
 
 # The ID and range of a sample spreadsheet.
 SAMPLE_SPREADSHEET_ID = "1cqG_FRGjnOqHYx0GKKuxG7flzpCxfkuiC12aNDqDeRU"
-SAMPLE_RANGE_NAME = "DATA1!A:AA"
+SAMPLE_RANGE_NAME = "DATA1!A:K"
 
 
 def main():
@@ -47,12 +47,12 @@ def main():
         """select
 	U.*,
 	A.gmv
-from
+        from
 	(
 	select
 		e.id,
 		e.localization,
-		e.firstName,
+		STRFTIME('%Y',(e.birthDate)) as year_date,
 		e.lastName,
 		o.attributionDate,
 		sum(case when o.status = 'signed' then 1 else 0 end) as num_signed,
@@ -71,7 +71,7 @@ from
 		e.firstName,
 		e.lastName,
 		o.attributionDate) U
-inner join (
+        inner join (
 	select
 		o.employeeId,
 		o.attributionDate,
