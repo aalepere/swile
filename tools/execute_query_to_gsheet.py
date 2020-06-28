@@ -46,7 +46,7 @@ def main():
     df = pd.read_sql_query(
         """select
 	U.*,
-	A.gmv
+	A.avg_month
         from
 	(
 	select
@@ -74,17 +74,14 @@ def main():
         inner join (
 	select
 		o.employeeId,
-		o.attributionDate,
-		sum(grossBookings) as gmv
+		avg(aa.grossBookings) as avg_month
 	from
 		AccountsActvity aa
 	inner join Opportunities o on
 		o.accountId = aa.accountId
 	group by
-		o.attributionDate,
-		o.employeeId) A on
-	A.employeeId = U.id
-	and A.attributionDate = U.attributionDate""",
+		o.employeeId ) A on
+	A.employeeId = U.id""",
         con,
     )
     print(df)
