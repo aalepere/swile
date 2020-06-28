@@ -73,3 +73,8 @@ The below command line runs the luigi pipeline:
 ```shell
 PYTHONPATH="." luigi --module pipeline LoadDataGsheet --local-scheduler
 ```
+
+## TODO
+* [ ] Add others SQLs to pipeline
+* [ ] Add database diagram
+* [ ] Unit test functions used in the pipeline
